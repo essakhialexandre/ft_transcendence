@@ -1,11 +1,11 @@
 services:
   nestjs:
     build:
-      dockerfile: backend/Dockerfile
-      context: .
+      dockerfile: Dockerfile
+      context: ./backend
       target: dev
     volumes:
-      - .:/usr/src/app
+      - ./backend:/usr/src/app/
     env_file:
       - .env
     command: npm run start:dev

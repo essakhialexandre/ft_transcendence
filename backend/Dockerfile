@@ -8,7 +8,7 @@ RUN chmod -R 777 /usr/src/app
 
 WORKDIR /usr/src/app
 
-COPY --chown=node:node package*.json ./
+COPY package*.json ./
 
 RUN npm ci
 
