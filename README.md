@@ -1,11 +1,8 @@
 # ft_transcendence
 
-If you launch the project at school, do it in goinfre, permissions are messed up. Even then, volumes' UID are different, need to find a solution for it.
+Since Docker runs in rootless mode on the school's computer, permissions will get a bit weird if you want to use the Hot Reload feature on the school's computer.
+Rootless mode assign a UID to the volume which differs from your user ID and permissions for the volumes become messed up. However, on your VM or your personnal computer, if you're running Docker in root (which is the default), there are no issue.
 
-Start by running npm install at the root of the folder and in the backend folder to install the necessary modules.
-
-'chmod -R 777 backend' before docker compose up
-
-Hot reloading works, meaning you can modify files in realtime.
+The only workaround I use in school is to chmod -R 777 the backend folder so there are no issues with volume. Even then, it becomes impossible to delete the volumes from outside the docker.
 
 Can check if it works by accessing localhost:3000 in your browser.
