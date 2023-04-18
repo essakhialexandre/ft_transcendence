@@ -5,4 +5,6 @@ Rootless mode assign a UID to the volume which differs from your user ID and per
 
 The only workaround I use in school is to chmod -R 777 the backend folder so there are no issues with volume. Even then, it becomes impossible to delete the volumes from outside the docker.
 
+I'm keeping the .env for now, but as soon as we'll start using the school's API I'll remove it.
+
 Can check if it works by accessing localhost:3000 in your browser.
