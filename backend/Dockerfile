@@ -14,4 +14,6 @@ RUN npm ci
 
 COPY --chown=node:node . .
 
+RUN npx prisma generate
+
 USER node
