@@ -17,6 +17,7 @@ services:
   db:
     image: postgres
     restart: always
+    user: 1000:1000
     env_file:
       - .env
     ports:
