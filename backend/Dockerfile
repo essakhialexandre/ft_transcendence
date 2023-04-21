@@ -16,4 +16,10 @@ COPY --chown=node:node . .
 
 RUN npx prisma generate
 
+COPY ./scripts/dev-entrypoint.sh /usr/local/bin/
+
+RUN ["chmod", "+x", "/usr/local/bin/dev-entrypoint.sh"]
+
 USER node
+
+ENTRYPOINT ["dev-entrypoint.sh"]

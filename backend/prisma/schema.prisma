@@ -16,7 +16,7 @@ datasource db {
 
 model User {
 	id				Int @id @unique
-	name			String @unique
+	username		String @unique
 	avatar			String
 }
 
