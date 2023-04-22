@@ -22,7 +22,7 @@ export class UsersController {
     const user = await this.usersService.findOne(+id);
 
     if (!user) {
-      throw new NotFoundException('User does not exist');
+      throw new NotFoundException(`User with id of ${id} does not exist`);
     }
 
     return (user);

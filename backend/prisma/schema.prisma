@@ -18,6 +18,7 @@ model User {
 	id				Int @id @unique
 	username		String @unique
 	avatar			String
+	createdAt		DateTime @default(now())
 }
 
 // For a Channel, we need an enum type representing the privacy of the channel (public, private, protected), a channel owner, one or more channel administrator, 
