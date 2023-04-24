@@ -1,5 +1,12 @@
 # ft_transcendence
 
+## Tools used
+
+* NestJS - Backend framework
+* Prisma - Object-Relational Mapper (ORM)
+* PostgreSQL - Database
+* Swagger - API documentation tool
+
 Since Docker runs in rootless mode on the school's computer, permissions will get a bit weird if you want to use the Hot Reload feature on the school's computer.
 Rootless mode assign a UID to the volume which differs from your user ID and permissions for the volumes become messed up. However, on your VM or your personnal computer, if you're running Docker in root (which is the default), there are no issue.
 
