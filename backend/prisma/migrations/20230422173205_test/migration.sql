@@ -4,7 +4,7 @@ CREATE TYPE "ChannelType" AS ENUM ('PUBLIC', 'PRIVATE', 'PROTECTED', 'WHISPER');
 -- CreateTable
 CREATE TABLE "User" (
     "id" INTEGER NOT NULL,
-    "name" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
     "avatar" TEXT NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
@@ -29,4 +29,4 @@ CREATE TABLE "Game" (
 CREATE UNIQUE INDEX "User_id_key" ON "User"("id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_name_key" ON "User"("name");
+CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
