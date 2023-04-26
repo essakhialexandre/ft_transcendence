@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, ParseIntPipe, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -39,8 +39,8 @@ export class UsersController {
     return this.usersService.getFriends(user.friendList);
   }
 
-  @Patch('addFriend')
-  async addFriend(@Param('id', ParseIntPipe) id: number, @Param('friendId', ParseIntPipe) friendId: number)
+  @Post('addFriend')
+  async addFriend(@Query('id', ParseIntPipe) id: number, @Query('id of friend', ParseIntPipe) friendId: number)
   {
     const user = await this.usersService.findOne(id);
     const friend = await this.usersService.findOne(friendId);
@@ -51,7 +51,14 @@ export class UsersController {
     if (!friend) {
       throw new NotFoundException(`User with id of ${friendId} does not exist`);
     }
-    return this.usersService.addFriend(id, friendId);
+
+    if (user.friendList.includes(friendId)) {
+      console.log("Already friend!")
+      return ;
+    }
+
+    this.usersService.addFriend(id, friendId);
+    this.usersService.addFriend(friendId, id);
   }
 
   @Patch(':id')
