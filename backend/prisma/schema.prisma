@@ -13,11 +13,20 @@ datasource db {
 
 // User needs: a unique name, an avatar, 2FA, a friendlist, a match history, stats
 // Will add more as we progress
+enum Status {
+	ONLINE
+	OFFLINE
+	INGAME
+}
 
 model User {
-	id				Int @id @unique
+	id					Int @id @unique
 	username		String @unique
 	avatar			String
+	userStatus	Status @default(ONLINE)
+	friendList	Int[] @default([])
+	blockedList	Int[] @default([])
+	channelList	Int[] @default([])
 	createdAt		DateTime @default(now())
 }
 
@@ -32,8 +41,9 @@ enum ChannelType {
 }
 
 model Channel {
-	id		Int @id @default(autoincrement())
-	type	ChannelType
+	id			Int @id @default(autoincrement())
+	ownerId	Int
+	type		ChannelType
 }
 
 // For a Game, need at least the ID of the two players involved, the score, if the match is ongoing or over. Will add more.

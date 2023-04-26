@@ -26,8 +26,32 @@ export class UsersController {
     if (!user) {
       throw new NotFoundException(`User with id of ${id} does not exist`);
     }
-
     return (user);
+  }
+
+  @Get(':id/friends')
+  async getFriends(@Param('id', ParseIntPipe) id: number) {
+    const user = await this.usersService.findOne(id);
+
+    if (!user) {
+      throw new NotFoundException(`User with id of ${id} does not exist`);
+    }
+    return this.usersService.getFriends(user.friendList);
+  }
+
+  @Patch('addFriend')
+  async addFriend(@Param('id', ParseIntPipe) id: number, @Param('friendId', ParseIntPipe) friendId: number)
+  {
+    const user = await this.usersService.findOne(id);
+    const friend = await this.usersService.findOne(friendId);
+
+    if (!user) {
+      throw new NotFoundException(`User with id of ${id} does not exist`);
+    }
+    if (!friend) {
+      throw new NotFoundException(`User with id of ${friendId} does not exist`);
+    }
+    return this.usersService.addFriend(id, friendId);
   }
 
   @Patch(':id')
