@@ -19,6 +19,26 @@ export class UsersService {
     return this.prisma.user.findUnique({ where: { id } });
   }
 
+  async getFriends(friendIds: number[]) {
+    return this.prisma.user.findMany({
+      where: {id: {in: friendIds}},
+      select: {
+        id: true,
+        username: true,
+        avatar: true,
+        userStatus: true,
+      }
+    })
+  }
+
+  async addFriend(id: number, friendId: number)
+  {
+    return this.prisma.user.update({
+      where: { id },
+      data: { friendList: {push: friendId}}
+    })
+  }
+
   update(id: number, updateUserDto: UpdateUserDto) {
     return this.prisma.user.update( {
       where : { id },
