@@ -21,7 +21,13 @@ export class UsersService {
 
   async getFriends(friendIds: number[]) {
     return this.prisma.user.findMany({
-      where: {id: {in: friendIds}}
+      where: {id: {in: friendIds}},
+      select: {
+        id: true,
+        username: true,
+        avatar: true,
+        userStatus: true,
+      }
     })
   }
 
